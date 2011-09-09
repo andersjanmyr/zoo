@@ -16,14 +16,21 @@
   });
   describe('BookView', function() {
     beforeEach(function() {
-      return this.bookView = new BookView();
+      this.book = new Book(anders_books[0]);
+      return this.bookView = new BookView({
+        model: this.book
+      });
     });
     it('should hold a model', function() {
       expect(this.bookView.tagName).toBe('div');
       return expect(this.bookView.className).toBe('book');
     });
     return it('should render the book-template', function() {
-      return console.log(this.bookView.render());
+      $('#container').append(this.bookView.render().el);
+      expect($('#container .book').size()).toBe(1);
+      expect($('#container .book h1').text()).toBe('Predictably Irrational');
+      expect($('#container .book h2').text()).toBe('Dan Ariely');
+      return expect($('#container .book h3').text()).toBe('Anders Janmyr');
     });
   });
 }).call(this);
