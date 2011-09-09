@@ -11,10 +11,12 @@ do $ ->
 
     initialize: ->
       _.bindAll(this, 'render')
+      @model.bind('change', this.render)
 
     render: ->
       $(@el).html @template(@model.toJSON())
       this
+    
 
 console.log 'test'
 

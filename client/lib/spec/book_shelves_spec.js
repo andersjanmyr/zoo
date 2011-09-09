@@ -25,12 +25,23 @@
       expect(this.bookView.tagName).toBe('div');
       return expect(this.bookView.className).toBe('book');
     });
-    return it('should render the book-template', function() {
+    it('should render the book-template', function() {
       $('#container').append(this.bookView.render().el);
       expect($('#container .book').size()).toBe(1);
       expect($('#container .book h1').text()).toBe('Predictably Irrational');
       expect($('#container .book h2').text()).toBe('Dan Ariely');
       return expect($('#container .book h3').text()).toBe('Anders Janmyr');
+    });
+    it('should change when the model changes', function() {
+      $('#container').append(this.bookView.render().el);
+      expect($('#container .book h2').text()).toBe('Dan Ariely');
+      this.book.set({
+        author: 'Daniel Pink'
+      });
+      return expect($('#container .book h2').text()).toBe('Daniel Pink');
+    });
+    return afterEach(function() {
+      return $('#container').empty();
     });
   });
 }).call(this);

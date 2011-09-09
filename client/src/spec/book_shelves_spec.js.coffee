@@ -27,5 +27,13 @@ describe 'BookView', ->
     expect($('#container .book h1').text()).toBe 'Predictably Irrational'
     expect($('#container .book h2').text()).toBe 'Dan Ariely'
     expect($('#container .book h3').text()).toBe 'Anders Janmyr'
+  it 'should change when the model changes', ->
+    $('#container').append(@bookView.render().el)
+    expect($('#container .book h2').text()).toBe 'Dan Ariely'
+    @book.set({author: 'Daniel Pink'})
+    expect($('#container .book h2').text()).toBe 'Daniel Pink'
 
+
+  afterEach ->
+    $('#container').empty()
 

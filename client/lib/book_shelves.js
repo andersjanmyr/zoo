@@ -27,7 +27,8 @@
       BookView.prototype.tagName = 'div';
       BookView.prototype.className = 'book';
       BookView.prototype.initialize = function() {
-        return _.bindAll(this, 'render');
+        _.bindAll(this, 'render');
+        return this.model.bind('change', this.render);
       };
       BookView.prototype.render = function() {
         $(this.el).html(this.template(this.model.toJSON()));
