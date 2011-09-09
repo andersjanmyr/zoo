@@ -11,12 +11,30 @@
     window.sanity = function() {
       return 'sane';
     };
-    return window.Book = (function() {
+    window.Book = (function() {
       __extends(Book, Backbone.Model);
       function Book() {
         Book.__super__.constructor.apply(this, arguments);
       }
       return Book;
     })();
+    return window.BookView = (function() {
+      __extends(BookView, Backbone.View);
+      function BookView() {
+        BookView.__super__.constructor.apply(this, arguments);
+      }
+      BookView.prototype.template = _.template($('#book-template').html());
+      BookView.prototype.tagName = 'div';
+      BookView.prototype.className = 'book';
+      BookView.prototype.initialize = function() {
+        return _.bindAll(this, 'render');
+      };
+      BookView.prototype.render = function() {
+        $(this.el).html(this.template(this.model.toJSON()));
+        return this;
+      };
+      return BookView;
+    })();
   })();
+  console.log('test');
 }).call(this);

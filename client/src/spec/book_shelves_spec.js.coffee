@@ -12,3 +12,13 @@ describe 'Book', ->
     expect(@book.get('owner')).toBe 'Anders Janmyr'
 
 
+describe 'BookView', ->
+  beforeEach ->
+    @bookView = new BookView()
+
+  it 'should hold a model', ->
+    expect(@bookView.tagName).toBe 'div'
+    expect(@bookView.className).toBe 'book'
+
+  it 'should render the book-template', ->
+    console.log @bookView.render()
