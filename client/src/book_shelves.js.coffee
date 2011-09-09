@@ -1,0 +1,4 @@
+do $ ->
+  window.sanity = ->
+    'sane'
+
