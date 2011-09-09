@@ -6,12 +6,12 @@
   });
   describe('Book', function() {
     beforeEach(function() {
-      return this.album = new Album(anders_books[0]);
+      return this.book = new Book(anders_books[0]);
     });
     return it('should hold title, author, and owner', function() {
-      expect(this.album.title).toBe('Predictably Irrational');
-      expect(this.album.author).toBe('Dan Ariely');
-      return expect(this.album.owner).toBe('Anders Janmyr');
+      expect(this.book.get('title')).toBe('Predictably Irrational');
+      expect(this.book.get('author')).toBe('Dan Ariely');
+      return expect(this.book.get('owner')).toBe('Anders Janmyr');
     });
   });
 }).call(this);

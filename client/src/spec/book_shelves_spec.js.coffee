@@ -4,11 +4,11 @@ describe 'sanity', ->
 
 describe 'Book', ->
   beforeEach ->
-    @album = new Album(anders_books[0])
+    @book = new Book(anders_books[0])
 
   it 'should hold title, author, and owner', ->
-    expect(@album.title).toBe 'Predictably Irrational'
-    expect(@album.author).toBe 'Dan Ariely'
-    expect(@album.owner).toBe 'Anders Janmyr'
+    expect(@book.get('title')).toBe 'Predictably Irrational'
+    expect(@book.get('author')).toBe 'Dan Ariely'
+    expect(@book.get('owner')).toBe 'Anders Janmyr'
 
 
