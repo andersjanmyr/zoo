@@ -2,34 +2,36 @@ describe 'sanity', ->
   it 'should return sane', ->
     expect(sanity()).toEqual('sane')
 
-describe 'Book', ->
+describe 'animal', ->
   beforeEach ->
-    @book = new Book(predIrr)
+    @animal = new Animal(tapir)
 
-  it 'should hold title, author, and owner', ->
-    expect(@book.get('title')).toBe 'Predictably Irrational'
-    expect(@book.get('author')).toBe 'Dan Ariely'
+  it 'should hold kind, name, and image', ->
+    expect(@animal.get('kind')).toBe 'Tapir'
+    expect(@animal.get('name')).toBe 'Dan Ariely'
+    expect(@animal.get('image')).toBe 'http://photos1.blogger.com/blogger2/3178/4156/259/gse_multipart28341.jpg'
 
 
-describe 'BookView', ->
+describe 'animalView', ->
   beforeEach ->
-    @book = new Book(predIrr)
-    @bookView = new BookView({model: @book})
+    @animal = new Animal(tapir)
+    @animalView = new AnimalView({model: @animal})
 
   it 'should hold a model', ->
-    expect(@bookView.tagName).toBe 'div'
-    expect(@bookView.className).toBe 'book'
+    expect(@animalView.tagName).toBe 'div'
+    expect(@animalView.className).toBe 'animal'
 
-  it 'should render the book-template', ->
-    $('#container').append(@bookView.render().el)
-    expect($('#container .book').size()).toBe 1
-    expect($('#container .book h1').text()).toBe 'Predictably Irrational'
-    expect($('#container .book h2').text()).toBe 'Dan Ariely'
+  it 'should render the animal-template', ->
+    $('#container').append(@animalView.render().el)
+    expect($('#container .animal').size()).toBe 1
+    expect($('#container .animal h1').text()).toBe 'Tapir'
+    expect($('#container .animal h2').text()).toBe 'Dan Ariely'
+
   it 'should change when the model changes', ->
-    $('#container').append(@bookView.render().el)
-    expect($('#container .book h2').text()).toBe 'Dan Ariely'
-    @book.set({author: 'Daniel Pink'})
-    expect($('#container .book h2').text()).toBe 'Daniel Pink'
+    $('#container').append(@animalView.render().el)
+    expect($('#container .animal h2').text()).toBe 'Dan Ariely'
+    @animal.set({name: 'Daniel Pink'})
+    expect($('#container .animal h2').text()).toBe 'Daniel Pink'
 
 
   afterEach ->

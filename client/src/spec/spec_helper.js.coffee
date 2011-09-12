@@ -1,24 +1,16 @@
-window.predIrr =
-    title: 'Predictably Irrational'
-    author: 'Dan Ariely'
-    online: 
-      provider: 'amazon'
-      id: 0061353248
+window.tapir =
+  kind: 'Tapir'
+  name: 'Dan Ariely'
+  image: 'http://photos1.blogger.com/blogger2/3178/4156/259/gse_multipart28341.jpg'
 
-window.zen =
-    title: 'Zen and the art of Motorcycle Maintenance'
-    author: 'Robert Pirsig'
-    owner: 'Anders Janmyr'
-    online: 
-      provider: 'amazon'
-      id: 0061673730
+window.aardvark =
+  kind: 'Aardvark'
+  name: 'Douglas Hofstadter'
+  image: ''
 
-window.godel
-    title: 'Gödel, Escher, Bach'
-    author: 'Douglas Hofstadter'
-    owner: 'Anders Janmyr'
-    online: 
-      provider: 'amazon'
-      id: 0465026567
+window.sloth =
+  kind: 'Sloth'
+  name: 'Robert Pirsig'
+  image: ''
 
-books = [predIrr, zen, godel]
+animals = [tapir, aardvark, sloth]

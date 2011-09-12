@@ -2,12 +2,12 @@ do $ ->
   window.sanity = ->
     'sane'
 
-  class window.Book extends Backbone.Model
+  class window.Animal extends Backbone.Model
 
-  class window.BookView extends Backbone.View
-    template: _.template($('#book-template').html())
+  class window.AnimalView extends Backbone.View
+    template: _.template($('#animal-template').html())
     tagName: 'div'
-    className: 'book'
+    className: 'animal'
 
     initialize: ->
       _.bindAll(this, 'render')
