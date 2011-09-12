@@ -8,10 +8,10 @@
 |-- client                                  # The client 
 |   |-- index.html                          # The application page.
 |   |-- lib                                 # The Javascript source
-|   |   |-- book_shelves.js                 # The application code.
+|   |   |-- zoo.js                 # The application code.
 |   |   |-- jasmine-1.1.0.rc1               # Test support files
 |   |   |-- spec
-|   |   |   |-- book_shelves_spec.js        # Spec files for the app
+|   |   |   |-- zoo_spec.js        # Spec files for the app
 |   |   |   `-- spec_helper.js              # Spec files
 |   |   `-- vendor                          # Third party files
 |   |       |-- backbone.js
@@ -21,9 +21,9 @@
 |   |-- Readme.md                           # This file
 |   |-- SpecRunner.html                     # The spec runner
   |   `-- src                               # The Coffescript source
-|       |-- book_shelves.js.coffee
+|       |-- zoo.js.coffee
 |       `-- spec
-|           |-- book_shelves_spec.js.coffee
+|           |-- zoo_spec.js.coffee
 |           `-- spec_helper.js.coffee
 `-- server                                  # The server
     |-- lib
@@ -40,8 +40,8 @@ fine to open it as a file.
 ### Verify setup
 
 Verify that the sanity spec is showing green, and that all other specs fails.
-Open up the files `book_shelves_spec.js.coffee` and `book_shelves.js` or
-`book_shelves.js.coffee`.
+Open up the files `zoo_spec.js.coffee` and `zoo.js` or
+`zoo.js.coffee`.
 
 
 ## 1. Fix, the first test, *Book should hold title, ...*
