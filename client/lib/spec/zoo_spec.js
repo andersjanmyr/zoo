@@ -4,17 +4,17 @@
       return expect(sanity()).toEqual('sane');
     });
   });
-  describe('animal', function() {
+  describe('Animal', function() {
     beforeEach(function() {
       return this.animal = new Animal(tapir);
     });
     return it('should hold kind, name, and image', function() {
       expect(this.animal.get('kind')).toBe('Tapir');
       expect(this.animal.get('name')).toBe('Dan Ariely');
-      return expect(this.animal.get('image')).toBe('http://photos1.blogger.com/blogger2/3178/4156/259/gse_multipart28341.jpg');
+      return expect(this.animal.get('image')).toBe('/images/tapir.png');
     });
   });
-  describe('animalView', function() {
+  describe('AnimalView', function() {
     beforeEach(function() {
       this.animal = new Animal(tapir);
       return this.animalView = new AnimalView({
@@ -29,7 +29,8 @@
       $('#container').append(this.animalView.render().el);
       expect($('#container .animal').size()).toBe(1);
       expect($('#container .animal h1').text()).toBe('Tapir');
-      return expect($('#container .animal h2').text()).toBe('Dan Ariely');
+      expect($('#container .animal h2').text()).toBe('Dan Ariely');
+      return expect($('#container .animal img').attr('src')).toBe('/images/tapir.png');
     });
     it('should change when the model changes', function() {
       $('#container').append(this.animalView.render().el);

@@ -1,7 +1,7 @@
 window.tapir =
   kind: 'Tapir'
   name: 'Dan Ariely'
-  image: 'http://photos1.blogger.com/blogger2/3178/4156/259/gse_multipart28341.jpg'
+  image: '/images/tapir.png'
 
 window.aardvark =
   kind: 'Aardvark'
