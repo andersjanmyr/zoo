@@ -4,17 +4,16 @@ describe 'sanity', ->
 
 describe 'Book', ->
   beforeEach ->
-    @book = new Book(anders_books[0])
+    @book = new Book(predIrr)
 
   it 'should hold title, author, and owner', ->
     expect(@book.get('title')).toBe 'Predictably Irrational'
     expect(@book.get('author')).toBe 'Dan Ariely'
-    expect(@book.get('owner')).toBe 'Anders Janmyr'
 
 
 describe 'BookView', ->
   beforeEach ->
-    @book = new Book(anders_books[0])
+    @book = new Book(predIrr)
     @bookView = new BookView({model: @book})
 
   it 'should hold a model', ->
@@ -26,7 +25,6 @@ describe 'BookView', ->
     expect($('#container .book').size()).toBe 1
     expect($('#container .book h1').text()).toBe 'Predictably Irrational'
     expect($('#container .book h2').text()).toBe 'Dan Ariely'
-    expect($('#container .book h3').text()).toBe 'Anders Janmyr'
   it 'should change when the model changes', ->
     $('#container').append(@bookView.render().el)
     expect($('#container .book h2').text()).toBe 'Dan Ariely'

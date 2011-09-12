@@ -6,17 +6,16 @@
   });
   describe('Book', function() {
     beforeEach(function() {
-      return this.book = new Book(anders_books[0]);
+      return this.book = new Book(predIrr);
     });
     return it('should hold title, author, and owner', function() {
       expect(this.book.get('title')).toBe('Predictably Irrational');
-      expect(this.book.get('author')).toBe('Dan Ariely');
-      return expect(this.book.get('owner')).toBe('Anders Janmyr');
+      return expect(this.book.get('author')).toBe('Dan Ariely');
     });
   });
   describe('BookView', function() {
     beforeEach(function() {
-      this.book = new Book(anders_books[0]);
+      this.book = new Book(predIrr);
       return this.bookView = new BookView({
         model: this.book
       });
@@ -29,8 +28,7 @@
       $('#container').append(this.bookView.render().el);
       expect($('#container .book').size()).toBe(1);
       expect($('#container .book h1').text()).toBe('Predictably Irrational');
-      expect($('#container .book h2').text()).toBe('Dan Ariely');
-      return expect($('#container .book h3').text()).toBe('Anders Janmyr');
+      return expect($('#container .book h2').text()).toBe('Dan Ariely');
     });
     it('should change when the model changes', function() {
       $('#container').append(this.bookView.render().el);
