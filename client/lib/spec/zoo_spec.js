@@ -21,8 +21,10 @@
         model: this.animal
       });
     });
-    it('should hold a model', function() {
-      expect(this.animalView.tagName).toBe('div');
+    it('should have a tag of div', function() {
+      return expect(this.animalView.tagName).toBe('div');
+    });
+    it('should have a classname as animal', function() {
       return expect(this.animalView.className).toBe('animal');
     });
     it('should render the animal-template', function() {
@@ -48,11 +50,54 @@
     beforeEach(function() {
       return this.animals = new Animals(animals);
     });
+    it('should hold Animal models', function() {
+      return expect(this.animals.model).toBe(Animal);
+    });
     it('should contain three animals', function() {
       return expect(this.animals.size()).toBe(3);
     });
     return it('should have the kinds Tapir, Aardvark, and Sloth', function() {
       return expect(this.animals.pluck('kind')).toEqual(['Tapir', 'Aardvark', 'Sloth']);
     });
+  });
+  describe('AnimalsView', function() {
+    beforeEach(function() {
+      this.animals = new Animals(animals);
+      return this.animalsView = new AnimalsView({
+        collection: this.animals
+      });
+    });
+    it('should have a tag of ul', function() {
+      return expect(this.animalsView.tagName).toBe('ul');
+    });
+    it('should have a classname as animals', function() {
+      return expect(this.animalsView.className).toBe('animals');
+    });
+    describe('animals-template', function() {
+      it('should render', function() {
+        $('#container').append(this.animalsView.render().el);
+        return expect($('#container .animals').size()).toBe(1);
+      });
+      it('should render three children', function() {
+        return expect($('#container .animals').children().size()).toBe(3);
+      });
+      it('should render three children', function() {
+        return expect($('#container .animals li').size()).toBe(3);
+      });
+      it('should be empty when the collection is reset', function() {
+        expect($('#container .animals li').size()).toBe(3);
+        this.animals.reset([]);
+        return expect($('#container .animals li').size()).toBe(0);
+      });
+      return it('should grow when an item is added to the collection', function() {
+        expect($('#container .animals li').size()).toBe(3);
+        this.animals.add(new Animal({
+          kind: 'Platypus',
+          name: 'Plato'
+        }));
+        return expect($('#container .animals li').size()).toBe(4);
+      });
+    });
+    return afterEach(function() {});
   });
 }).call(this);

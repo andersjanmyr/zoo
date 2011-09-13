@@ -17,8 +17,10 @@ describe 'AnimalView', ->
     @animal = new Animal(tapir)
     @animalView = new AnimalView({model: @animal})
 
-  it 'should hold a model', ->
+  it 'should have a tag of div', ->
     expect(@animalView.tagName).toBe 'div'
+
+  it 'should have a classname as animal', ->
     expect(@animalView.className).toBe 'animal'
 
   it 'should render the animal-template', ->
@@ -42,9 +44,50 @@ describe 'AnimalView', ->
 describe 'Animals', ->
   beforeEach ->
     @animals = new Animals(animals)
-      
+
+  it 'should hold Animal models', ->
+    expect(@animals.model).toBe Animal
+
   it 'should contain three animals', ->
     expect(@animals.size()).toBe 3
 
   it 'should have the kinds Tapir, Aardvark, and Sloth', ->
     expect(@animals.pluck('kind')).toEqual ['Tapir', 'Aardvark', 'Sloth']
+
+describe 'AnimalsView', ->
+  beforeEach ->
+    @animals = new Animals(animals)
+    @animalsView = new AnimalsView({collection: @animals})
+
+  it 'should have a tag of ul', ->
+    expect(@animalsView.tagName).toBe 'ul'
+
+  it 'should have a classname as animals', ->
+    expect(@animalsView.className).toBe 'animals'
+
+  describe 'animals-template', ->
+      
+    it 'should render', ->
+      $('#container').append(@animalsView.render().el)
+      expect($('#container .animals').size()).toBe 1
+
+    it 'should render three children', ->
+      expect($('#container .animals').children().size()).toBe 3
+
+    it 'should render three children', ->
+      expect($('#container .animals li').size()).toBe 3
+
+    it 'should be empty when the collection is reset', ->
+      expect($('#container .animals li').size()).toBe 3
+      @animals.reset([])
+      expect($('#container .animals li').size()).toBe 0
+
+    it 'should grow when an item is added to the collection', ->
+      expect($('#container .animals li').size()).toBe 3
+      @animals.add(new Animal({kind: 'Platypus', name: 'Plato'}))
+      expect($('#container .animals li').size()).toBe 4
+
+
+  afterEach ->
+    # $('#container').empty()
+
