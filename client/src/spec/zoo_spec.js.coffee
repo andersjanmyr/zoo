@@ -66,28 +66,29 @@ describe 'AnimalsView', ->
     expect(@animalsView.className).toBe 'animals'
 
   describe 'animals-template', ->
-      
-    it 'should render', ->
+
+    beforeEach -> 
       $('#container').append(@animalsView.render().el)
+
+    it 'should render', ->
       expect($('#container .animals').size()).toBe 1
 
     it 'should render three children', ->
       expect($('#container .animals').children().size()).toBe 3
 
-    it 'should render three children', ->
+    it "should render three li's", ->
       expect($('#container .animals li').size()).toBe 3
 
     it 'should be empty when the collection is reset', ->
       expect($('#container .animals li').size()).toBe 3
-      @animals.reset([])
+      @animals.reset()
       expect($('#container .animals li').size()).toBe 0
 
     it 'should grow when an item is added to the collection', ->
       expect($('#container .animals li').size()).toBe 3
-      @animals.add(new Animal({kind: 'Platypus', name: 'Plato'}))
+      @animals.add(new Animal({kind: 'Platypus', name: 'Plato', image: ''}))
       expect($('#container .animals li').size()).toBe 4
 
-
-  afterEach ->
-    # $('#container').empty()
+    afterEach ->
+      $('#container').empty()
 

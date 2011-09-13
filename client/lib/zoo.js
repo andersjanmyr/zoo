@@ -6,7 +6,7 @@
     child.prototype = new ctor;
     child.__super__ = parent.prototype;
     return child;
-  };
+  }, __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
   $(function() {
     var AnimalItemView;
     window.sanity = function() {
@@ -56,13 +56,15 @@
     return window.AnimalsView = (function() {
       __extends(AnimalsView, Backbone.View);
       function AnimalsView() {
+        this.renderAnimal = __bind(this.renderAnimal, this);
+        this.render = __bind(this.render, this);
         AnimalsView.__super__.constructor.apply(this, arguments);
       }
       AnimalsView.prototype.tagName = 'ul';
       AnimalsView.prototype.className = 'animals';
       AnimalsView.prototype.initialize = function() {
-        _.bindAll(this, 'render');
-        return this.collection.bind('reset', this.render);
+        this.collection.bind('reset', this.render);
+        return this.collection.bind('add', this.renderAnimal);
       };
       AnimalsView.prototype.render = function() {
         var $animals;
@@ -77,7 +79,7 @@
         });
         return this;
       };
-      AnimalsView.prototype.renderAnimal = function() {
+      AnimalsView.prototype.renderAnimal = function(animal) {
         var $animals, view;
         view = new AnimalItemView({
           model: animal

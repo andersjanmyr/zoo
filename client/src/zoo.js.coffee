@@ -28,10 +28,10 @@ do $ ->
     className: 'animals'
 
     initialize: ->
-      _.bindAll(this, 'render')
       this.collection.bind('reset', this.render);
+      this.collection.bind('add', this.renderAnimal);
 
-    render: ->
+    render: =>
       $animals = this.$(@el)
       $animals.empty()
       @collection.each (animal) ->
@@ -40,9 +40,9 @@ do $ ->
 
       return this;
 
-    renderAnimal: ->
+    renderAnimal: (animal) =>
       view = new AnimalItemView({model: animal})
-      $animals = this.$(@el)
+      $animals = @$(@el)
       $animals.append(view.render().el)
       
     

@@ -73,31 +73,36 @@
     it('should have a classname as animals', function() {
       return expect(this.animalsView.className).toBe('animals');
     });
-    describe('animals-template', function() {
+    return describe('animals-template', function() {
+      beforeEach(function() {
+        return $('#container').append(this.animalsView.render().el);
+      });
       it('should render', function() {
-        $('#container').append(this.animalsView.render().el);
         return expect($('#container .animals').size()).toBe(1);
       });
       it('should render three children', function() {
         return expect($('#container .animals').children().size()).toBe(3);
       });
-      it('should render three children', function() {
+      it("should render three li's", function() {
         return expect($('#container .animals li').size()).toBe(3);
       });
       it('should be empty when the collection is reset', function() {
         expect($('#container .animals li').size()).toBe(3);
-        this.animals.reset([]);
+        this.animals.reset();
         return expect($('#container .animals li').size()).toBe(0);
       });
-      return it('should grow when an item is added to the collection', function() {
+      it('should grow when an item is added to the collection', function() {
         expect($('#container .animals li').size()).toBe(3);
         this.animals.add(new Animal({
           kind: 'Platypus',
-          name: 'Plato'
+          name: 'Plato',
+          image: ''
         }));
         return expect($('#container .animals li').size()).toBe(4);
       });
+      return afterEach(function() {
+        return $('#container').empty();
+      });
     });
-    return afterEach(function() {});
   });
 }).call(this);
