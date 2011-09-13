@@ -38,3 +38,13 @@ describe 'AnimalView', ->
   afterEach ->
     $('#container').empty()
 
+
+describe 'Animals', ->
+  beforeEach ->
+    @animals = new Animals(animals)
+      
+  it 'should contain three animals', ->
+    expect(@animals.size()).toBe 3
+
+  it 'should have the kinds Tapir, Aardvark, and Sloth', ->
+    expect(@animals.pluck('kind')).toEqual ['Tapir', 'Aardvark', 'Sloth']

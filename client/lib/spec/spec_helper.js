@@ -1,5 +1,4 @@
 (function() {
-  var animals;
   window.tapir = {
     kind: 'Tapir',
     name: 'Dan Ariely',
@@ -15,5 +14,5 @@
     name: 'Robert Pirsig',
     image: ''
   };
-  animals = [tapir, aardvark, sloth];
+  window.animals = [tapir, aardvark, sloth];
 }).call(this);

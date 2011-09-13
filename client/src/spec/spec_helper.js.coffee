@@ -13,4 +13,4 @@ window.sloth =
   name: 'Robert Pirsig'
   image: ''
 
-animals = [tapir, aardvark, sloth]
+window.animals = [tapir, aardvark, sloth]

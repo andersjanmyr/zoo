@@ -17,6 +17,8 @@ do $ ->
       $(@el).html @template(@model.toJSON())
       this
     
+  class window.Animals extends Backbone.Collection
+    model: Animal
 
 console.log 'test'
 

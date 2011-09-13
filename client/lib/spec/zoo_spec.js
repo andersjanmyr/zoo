@@ -44,4 +44,15 @@
       return $('#container').empty();
     });
   });
+  describe('Animals', function() {
+    beforeEach(function() {
+      return this.animals = new Animals(animals);
+    });
+    it('should contain three animals', function() {
+      return expect(this.animals.size()).toBe(3);
+    });
+    return it('should have the kinds Tapir, Aardvark, and Sloth', function() {
+      return expect(this.animals.pluck('kind')).toEqual(['Tapir', 'Aardvark', 'Sloth']);
+    });
+  });
 }).call(this);
