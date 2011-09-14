@@ -29,7 +29,8 @@
       AnimalView.prototype.tagName = 'div';
       AnimalView.prototype.className = 'animal';
       AnimalView.prototype.initialize = function() {
-        return this.model.bind('change', this.render);
+        this.model.bind('change', this.render);
+        return this.model.bind('remove', this.remove, this);
       };
       AnimalView.prototype.render = function() {
         $(this.el).html(this.template(this.model.toJSON()));
@@ -56,8 +57,7 @@
     return window.AnimalsView = (function() {
       __extends(AnimalsView, Backbone.View);
       function AnimalsView() {
-        this.removeAnimal = __bind(this.removeAnimal, this);
-        this.renderAnimal = __bind(this.renderAnimal, this);
+        this.renderOne = __bind(this.renderOne, this);
         this.render = __bind(this.render, this);
         AnimalsView.__super__.constructor.apply(this, arguments);
       }
@@ -65,29 +65,22 @@
       AnimalsView.prototype.className = 'animals';
       AnimalsView.prototype.initialize = function() {
         this.collection.bind('reset', this.render);
-        this.collection.bind('add', this.renderAnimal);
-        return this.collection.bind('remove', this.render);
+        return this.collection.bind('add', this.renderOne);
       };
       AnimalsView.prototype.render = function() {
         var $animals;
         $animals = this.$(this.el);
         $animals.empty();
-        this.collection.each(this.renderAnimal);
+        this.collection.each(this.renderOne);
         return this;
       };
-      AnimalsView.prototype.renderAnimal = function(animal) {
+      AnimalsView.prototype.renderOne = function(animal) {
         var $animals, view;
         view = new AnimalItemView({
           model: animal
         });
         $animals = this.$(this.el);
         return $animals.append(view.render().el);
-      };
-      AnimalsView.prototype.removeAnimal = function(animal) {
-        var $animals;
-        console.log(animal);
-        $animals = this.$(this.el);
-        return $animals.remove();
       };
       return AnimalsView;
     })();

@@ -101,8 +101,10 @@
         return expect($('#container .animals li').size()).toBe(4);
       });
       it('should shrink when an item is removed from the collection', function() {
+        var animal;
         expect($('#container .animals li').size()).toBe(3);
-        this.animals.remove(this.animals.at(0));
+        animal = this.animals.at(0);
+        this.animals.remove(animal);
         return expect($('#container .animals li').size()).toBe(2);
       });
       return afterEach(function() {

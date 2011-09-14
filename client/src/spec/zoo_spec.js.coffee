@@ -91,7 +91,8 @@ describe 'AnimalsView', ->
 
     it 'should shrink when an item is removed from the collection', ->
       expect($('#container .animals li').size()).toBe 3
-      @animals.remove(@animals.at(0))
+      animal = @animals.at(0)
+      @animals.remove(animal)
       expect($('#container .animals li').size()).toBe 2
 
     afterEach ->

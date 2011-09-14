@@ -11,7 +11,8 @@ do $ ->
 
     initialize: ->
       @model.bind('change', @render)
-
+      @model.bind('remove', @remove, this)
+      
     render: =>
       $(@el).html @template(@model.toJSON())
       this
@@ -27,25 +28,19 @@ do $ ->
     className: 'animals'
 
     initialize: ->
-      @collection.bind('reset', @render);
-      @collection.bind('add', @renderAnimal);
-      @collection.bind('remove', @render);
+      @collection.bind('reset', @render)
+      @collection.bind('add', @renderOne)
 
     render: =>
       $animals = @$(@el)
       $animals.empty()
-      @collection.each (@renderAnimal)
+      @collection.each(@renderOne)
       return this
 
-    renderAnimal: (animal) =>
+    renderOne: (animal) =>
       view = new AnimalItemView({model: animal})
       $animals = @$(@el)
       $animals.append(view.render().el)
       
-    removeAnimal: (animal) =>
-      console.log animal
-      $animals = @$(@el)
-      $animals.remove()
-    
 console.log 'test'
 
