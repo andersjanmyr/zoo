@@ -89,6 +89,11 @@ describe 'AnimalsView', ->
       @animals.add(new Animal({kind: 'Platypus', name: 'Plato', image: ''}))
       expect($('#container .animals li').size()).toBe 4
 
+    it 'should shrink when an item is removed from the collection', ->
+      expect($('#container .animals li').size()).toBe 3
+      @animals.remove(@animals.at(0))
+      expect($('#container .animals li').size()).toBe 2
+
     afterEach ->
       $('#container').empty()
 

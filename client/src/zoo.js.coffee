@@ -10,10 +10,9 @@ do $ ->
     className: 'animal'
 
     initialize: ->
-      _.bindAll(this, 'render')
-      @model.bind('change', this.render)
+      @model.bind('change', @render)
 
-    render: ->
+    render: =>
       $(@el).html @template(@model.toJSON())
       this
     
@@ -28,23 +27,25 @@ do $ ->
     className: 'animals'
 
     initialize: ->
-      this.collection.bind('reset', this.render);
-      this.collection.bind('add', this.renderAnimal);
+      @collection.bind('reset', @render);
+      @collection.bind('add', @renderAnimal);
+      @collection.bind('remove', @render);
 
     render: =>
-      $animals = this.$(@el)
+      $animals = @$(@el)
       $animals.empty()
-      @collection.each (animal) ->
-        view = new AnimalItemView({model: animal})
-        $animals.append(view.render().el)
-
-      return this;
+      @collection.each (@renderAnimal)
+      return this
 
     renderAnimal: (animal) =>
       view = new AnimalItemView({model: animal})
       $animals = @$(@el)
       $animals.append(view.render().el)
       
+    removeAnimal: (animal) =>
+      console.log animal
+      $animals = @$(@el)
+      $animals.remove()
     
 console.log 'test'
 

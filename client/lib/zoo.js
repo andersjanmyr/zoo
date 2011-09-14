@@ -22,13 +22,13 @@
     window.AnimalView = (function() {
       __extends(AnimalView, Backbone.View);
       function AnimalView() {
+        this.render = __bind(this.render, this);
         AnimalView.__super__.constructor.apply(this, arguments);
       }
       AnimalView.prototype.template = _.template($('#animal-template').html());
       AnimalView.prototype.tagName = 'div';
       AnimalView.prototype.className = 'animal';
       AnimalView.prototype.initialize = function() {
-        _.bindAll(this, 'render');
         return this.model.bind('change', this.render);
       };
       AnimalView.prototype.render = function() {
@@ -56,6 +56,7 @@
     return window.AnimalsView = (function() {
       __extends(AnimalsView, Backbone.View);
       function AnimalsView() {
+        this.removeAnimal = __bind(this.removeAnimal, this);
         this.renderAnimal = __bind(this.renderAnimal, this);
         this.render = __bind(this.render, this);
         AnimalsView.__super__.constructor.apply(this, arguments);
@@ -64,19 +65,14 @@
       AnimalsView.prototype.className = 'animals';
       AnimalsView.prototype.initialize = function() {
         this.collection.bind('reset', this.render);
-        return this.collection.bind('add', this.renderAnimal);
+        this.collection.bind('add', this.renderAnimal);
+        return this.collection.bind('remove', this.render);
       };
       AnimalsView.prototype.render = function() {
         var $animals;
         $animals = this.$(this.el);
         $animals.empty();
-        this.collection.each(function(animal) {
-          var view;
-          view = new AnimalItemView({
-            model: animal
-          });
-          return $animals.append(view.render().el);
-        });
+        this.collection.each(this.renderAnimal);
         return this;
       };
       AnimalsView.prototype.renderAnimal = function(animal) {
@@ -86,6 +82,12 @@
         });
         $animals = this.$(this.el);
         return $animals.append(view.render().el);
+      };
+      AnimalsView.prototype.removeAnimal = function(animal) {
+        var $animals;
+        console.log(animal);
+        $animals = this.$(this.el);
+        return $animals.remove();
       };
       return AnimalsView;
     })();

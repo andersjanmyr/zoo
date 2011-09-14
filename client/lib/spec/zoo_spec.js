@@ -100,6 +100,11 @@
         }));
         return expect($('#container .animals li').size()).toBe(4);
       });
+      it('should shrink when an item is removed from the collection', function() {
+        expect($('#container .animals li').size()).toBe(3);
+        this.animals.remove(this.animals.at(0));
+        return expect($('#container .animals li').size()).toBe(2);
+      });
       return afterEach(function() {
         return $('#container').empty();
       });
