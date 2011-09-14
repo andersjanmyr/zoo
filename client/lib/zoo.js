@@ -8,7 +8,6 @@
     return child;
   }, __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
   $(function() {
-    var AnimalItemView;
     window.sanity = function() {
       return 'sane';
     };
@@ -26,7 +25,7 @@
         AnimalView.__super__.constructor.apply(this, arguments);
       }
       AnimalView.prototype.template = _.template($('#animal-template').html());
-      AnimalView.prototype.tagName = 'div';
+      AnimalView.prototype.tagName = 'li';
       AnimalView.prototype.className = 'animal';
       AnimalView.prototype.initialize = function() {
         this.model.bind('change', this.render);
@@ -45,14 +44,6 @@
       }
       Animals.prototype.model = Animal;
       return Animals;
-    })();
-    AnimalItemView = (function() {
-      __extends(AnimalItemView, AnimalView);
-      function AnimalItemView() {
-        AnimalItemView.__super__.constructor.apply(this, arguments);
-      }
-      AnimalItemView.prototype.tagName = 'li';
-      return AnimalItemView;
     })();
     return window.AnimalsView = (function() {
       __extends(AnimalsView, Backbone.View);
@@ -76,7 +67,7 @@
       };
       AnimalsView.prototype.renderOne = function(animal) {
         var $animals, view;
-        view = new AnimalItemView({
+        view = new AnimalView({
           model: animal
         });
         $animals = this.$(this.el);

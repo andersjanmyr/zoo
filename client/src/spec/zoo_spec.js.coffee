@@ -17,8 +17,8 @@ describe 'AnimalView', ->
     @animal = new Animal(tapir)
     @animalView = new AnimalView({model: @animal})
 
-  it 'should have a tag of div', ->
-    expect(@animalView.tagName).toBe 'div'
+  it 'should have a tag of li', ->
+    expect(@animalView.tagName).toBe 'li'
 
   it 'should have a classname as animal', ->
     expect(@animalView.className).toBe 'animal'
@@ -72,9 +72,6 @@ describe 'AnimalsView', ->
 
     it 'should render', ->
       expect($('#container .animals').size()).toBe 1
-
-    it 'should render three children', ->
-      expect($('#container .animals').children().size()).toBe 3
 
     it "should render three li's", ->
       expect($('#container .animals li').size()).toBe 3

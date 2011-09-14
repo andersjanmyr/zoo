@@ -6,7 +6,7 @@ do $ ->
 
   class window.AnimalView extends Backbone.View
     template: _.template($('#animal-template').html())
-    tagName: 'div'
+    tagName: 'li'
     className: 'animal'
 
     initialize: ->
@@ -19,9 +19,6 @@ do $ ->
     
   class window.Animals extends Backbone.Collection
     model: Animal
-
-  class AnimalItemView extends AnimalView
-    tagName: 'li'
 
   class window.AnimalsView extends Backbone.View
     tagName: 'ul'
@@ -38,7 +35,7 @@ do $ ->
       return this
 
     renderOne: (animal) =>
-      view = new AnimalItemView({model: animal})
+      view = new AnimalView({model: animal})
       $animals = @$(@el)
       $animals.append(view.render().el)
       

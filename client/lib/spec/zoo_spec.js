@@ -21,8 +21,8 @@
         model: this.animal
       });
     });
-    it('should have a tag of div', function() {
-      return expect(this.animalView.tagName).toBe('div');
+    it('should have a tag of li', function() {
+      return expect(this.animalView.tagName).toBe('li');
     });
     it('should have a classname as animal', function() {
       return expect(this.animalView.className).toBe('animal');
@@ -79,9 +79,6 @@
       });
       it('should render', function() {
         return expect($('#container .animals').size()).toBe(1);
-      });
-      it('should render three children', function() {
-        return expect($('#container .animals').children().size()).toBe(3);
       });
       it("should render three li's", function() {
         return expect($('#container .animals li').size()).toBe(3);
