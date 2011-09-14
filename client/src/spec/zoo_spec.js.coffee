@@ -95,3 +95,24 @@ describe 'AnimalsView', ->
     afterEach ->
       $('#container').empty()
 
+
+  describe 'Server', ->
+    specify = it
+
+    beforeEach ->
+      @animals = new Animals()
+      found = false
+      @animals.fetch({
+        error: (error) -> console.log(error)
+        success: (result) -> 
+          console.log 'result', result
+          found = true
+      })
+      isFound = -> found
+      waitsFor(isFound, 'Timeout error', 1000)
+
+
+    specify 'fetch should populate the animals from the server', ->
+      console.log 'animals', @animals
+      expect(@animals.size()).toBe 3
+

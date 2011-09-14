@@ -43,6 +43,7 @@
         Animals.__super__.constructor.apply(this, arguments);
       }
       Animals.prototype.model = Animal;
+      Animals.prototype.url = '/animals';
       return Animals;
     })();
     return window.AnimalsView = (function() {

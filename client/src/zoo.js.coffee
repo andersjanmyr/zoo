@@ -19,6 +19,7 @@ do $ ->
     
   class window.Animals extends Backbone.Collection
     model: Animal
+    url: '/animals'
 
   class window.AnimalsView extends Backbone.View
     tagName: 'ul'

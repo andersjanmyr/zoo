@@ -2,16 +2,39 @@
 
 ## 0. Setup 
 
+Use one of the provided servers, Express (Node), Sinatra (Ruby),
+or Jersey (Java)
+
+## Node
+
+    $ brew/aptitude install node.js
+    $ curl http://npmjs.org/install.sh | sh
+    $ npm install -g express
+
+## Sinatra
+
+    $ curl 
+    $ DO WHAT THE INSTALLER TELLS YOU TO DO (update .profile)
+    $ rvm install 1.9.2
+    $ rvm use 1.9.2 --default
+    $ gem install sinatra
+
+
+## Jersey
+
+Do what you have to!
+
+
 ### Unpack the files.
 
 
 |-- client                                  # The client 
 |   |-- index.html                          # The application page.
 |   |-- lib                                 # The Javascript source
-|   |   |-- zoo.js                 # The application code.
+|   |   |-- zoo.js                          # The application code.
 |   |   |-- jasmine-1.1.0.rc1               # Test support files
 |   |   |-- spec
-|   |   |   |-- zoo_spec.js        # Spec files for the app
+|   |   |   |-- zoo_spec.js                 # Spec files for the app
 |   |   |   `-- spec_helper.js              # Spec files
 |   |   `-- vendor                          # Third party files
 |   |       |-- backbone.js

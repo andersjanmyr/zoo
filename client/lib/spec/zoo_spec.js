@@ -73,7 +73,7 @@
     it('should have a classname as animals', function() {
       return expect(this.animalsView.className).toBe('animals');
     });
-    return describe('animals-template', function() {
+    describe('animals-template', function() {
       beforeEach(function() {
         return $('#container').append(this.animalsView.render().el);
       });
@@ -106,6 +106,32 @@
       });
       return afterEach(function() {
         return $('#container').empty();
+      });
+    });
+    return describe('Server', function() {
+      var specify;
+      specify = it;
+      beforeEach(function() {
+        var found, isFound;
+        this.animals = new Animals();
+        found = false;
+        this.animals.fetch({
+          error: function(error) {
+            return console.log(error);
+          },
+          success: function(result) {
+            console.log('result', result);
+            return found = true;
+          }
+        });
+        isFound = function() {
+          return found;
+        };
+        return waitsFor(isFound, 'Timeout error', 1000);
+      });
+      return specify('fetch should populate the animals from the server', function() {
+        console.log('animals', this.animals);
+        return expect(this.animals.size()).toBe(3);
       });
     });
   });

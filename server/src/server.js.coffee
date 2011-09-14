@@ -20,3 +20,13 @@ port = process.env.PORT or process.env.VMC_APP_PORT or 4000
 console.log "Starting on port #{port}"
 server.listen(port)
 
+
+animals = [
+  { kind: 'Tapir', name: 'Dan Ariely', image: '/images/tapir.png' },
+  { kind: 'Aardvark', name: 'Douglas Hofstadter', image: '' },
+  { kind: 'Sloth',  name: 'Robert Pirsig', image: '' }
+]
+
+server.get '/animals', (request, response) ->
+  console.log '/animals', animals
+  response.send animals

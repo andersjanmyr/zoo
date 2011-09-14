@@ -1,5 +1,5 @@
 (function() {
-  var express, port, server;
+  var animals, express, port, server;
   express = require('express');
   server = express.createServer();
   server.configure(function() {
@@ -14,4 +14,23 @@
   port = process.env.PORT || process.env.VMC_APP_PORT || 4000;
   console.log("Starting on port " + port);
   server.listen(port);
+  animals = [
+    {
+      kind: 'Tapir',
+      name: 'Dan Ariely',
+      image: '/images/tapir.png'
+    }, {
+      kind: 'Aardvark',
+      name: 'Douglas Hofstadter',
+      image: ''
+    }, {
+      kind: 'Sloth',
+      name: 'Robert Pirsig',
+      image: ''
+    }
+  ];
+  server.get('/animals', function(request, response) {
+    console.log('/animals', animals);
+    return response.send(animals);
+  });
 }).call(this);
