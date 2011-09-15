@@ -96,8 +96,7 @@ describe 'AnimalsView', ->
       $('#container').empty()
 
 
-  describe 'Server', ->
-    specify = it
+  describe 'Server /animals Animals#fetch', ->
 
     beforeEach ->
       @animals = new Animals()
@@ -105,14 +104,38 @@ describe 'AnimalsView', ->
       @animals.fetch({
         error: (error) -> console.log(error)
         success: (result) -> 
-          console.log 'result', result
+          console.log 'fetch', result
           found = true
       })
       isFound = -> found
       waitsFor(isFound, 'Timeout error', 1000)
 
 
-    specify 'fetch should populate the animals from the server', ->
+    it 'should populate the animals from the server', ->
       console.log 'animals', @animals
       expect(@animals.size()).toBe 3
 
+  describe 'Server POST /animals Animals#create', ->
+    beforeEach ->
+      @animals = new Animals()
+      found = false
+      result = @animals.create({
+        kind: 'Elefant'
+        name: 'Dumbo'
+        image: ''
+      }, {
+        error: (error) -> console.log(error)
+        success: (result) -> 
+          console.log 'create', result
+          found = true
+      })
+      success = -> found
+      waitsFor(success, 'Timeout error', 1000)
+
+    it 'should save the animal to the server', ->
+      expect(@animals.size()).toBe 4
+
+    afterEach ->
+      console.log 'destroy', @animals
+      @animals.at(0).destroy()
+      console.log 'destroy', @animals

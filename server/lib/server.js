@@ -33,4 +33,11 @@
     console.log('/animals', animals);
     return response.send(animals);
   });
+  server.post('/animals', function(request, response) {
+    var animal;
+    animal = request.body;
+    console.log('/animals', animal);
+    animals.push(animal);
+    return response.send(animal);
+  });
 }).call(this);

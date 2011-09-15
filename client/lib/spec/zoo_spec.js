@@ -108,9 +108,7 @@
         return $('#container').empty();
       });
     });
-    return describe('Server', function() {
-      var specify;
-      specify = it;
+    describe('Server /animals Animals#fetch', function() {
       beforeEach(function() {
         var found, isFound;
         this.animals = new Animals();
@@ -120,7 +118,7 @@
             return console.log(error);
           },
           success: function(result) {
-            console.log('result', result);
+            console.log('fetch', result);
             return found = true;
           }
         });
@@ -129,9 +127,41 @@
         };
         return waitsFor(isFound, 'Timeout error', 1000);
       });
-      return specify('fetch should populate the animals from the server', function() {
+      return it('should populate the animals from the server', function() {
         console.log('animals', this.animals);
         return expect(this.animals.size()).toBe(3);
+      });
+    });
+    return describe('Server POST /animals Animals#create', function() {
+      beforeEach(function() {
+        var found, result, success;
+        this.animals = new Animals();
+        found = false;
+        result = this.animals.create({
+          kind: 'Elefant',
+          name: 'Dumbo',
+          image: ''
+        }, {
+          error: function(error) {
+            return console.log(error);
+          },
+          success: function(result) {
+            console.log('create', result);
+            return found = true;
+          }
+        });
+        success = function() {
+          return found;
+        };
+        return waitsFor(success, 'Timeout error', 1000);
+      });
+      it('should save the animal to the server', function() {
+        return expect(this.animals.size()).toBe(4);
+      });
+      return afterEach(function() {
+        console.log('destroy', this.animals);
+        this.animals.at(0).destroy();
+        return console.log('destroy', this.animals);
       });
     });
   });
