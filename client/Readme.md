@@ -9,11 +9,12 @@ or Jersey (Java)
 
     $ brew/aptitude install node.js
     $ curl http://npmjs.org/install.sh | sh
+    $ npm install -g coffee-script
     $ npm install -g express
 
 ## Sinatra
 
-    $ curl 
+    $ bash < <(curl -s https://rvm.beginrescueend.com/install/rvm) 
     $ DO WHAT THE INSTALLER TELLS YOU TO DO (update .profile)
     $ rvm install 1.9.2
     $ rvm use 1.9.2 --default
@@ -35,7 +36,7 @@ Do what you have to!
 |   |   |-- jasmine-1.1.0.rc1               # Test support files
 |   |   |-- spec
 |   |   |   |-- zoo_spec.js                 # Spec files for the app
-|   |   |   `-- spec_helper.js              # Spec files
+|   |   |   `-- fixtures.js                 # Fixtures for the specs
 |   |   `-- vendor                          # Third party files
 |   |       |-- backbone.js
 |   |       |-- jquery-1.6.3.js
@@ -44,10 +45,10 @@ Do what you have to!
 |   |-- Readme.md                           # This file
 |   |-- SpecRunner.html                     # The spec runner
   |   `-- src                               # The Coffescript source
-|       |-- zoo.js.coffee
+|       |-- zoo.js.coffee                   # The application code
 |       `-- spec
-|           |-- zoo_spec.js.coffee
-|           `-- spec_helper.js.coffee
+|           |-- zoo_spec.js.coffee          # The Coffeescript specs
+|           `-- fixtures.js.coffee          # The Coffeescript fixtures
 `-- server                                  # The server
     |-- lib
     |   |-- server.js                       # Node Javascript
