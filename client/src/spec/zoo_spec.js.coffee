@@ -9,6 +9,7 @@ describe 'Animal', ->
   it 'should hold kind, name, and image', ->
     expect(@animal.get('kind')).toBe 'Tapir'
     expect(@animal.get('name')).toBe 'Dan Ariely'
+    expect(@animal.get('age')).toBe 5
     expect(@animal.get('image')).toBe '/images/tapir.png'
 
 
@@ -28,6 +29,7 @@ describe 'AnimalView', ->
     expect($('#container .animal').size()).toBe 1
     expect($('#container .animal h1').text()).toBe 'Tapir'
     expect($('#container .animal h2').text()).toBe 'Dan Ariely'
+    expect($('#container .animal h3').text()).toBe '5'
     expect($('#container .animal img').attr('src')).toBe '/images/tapir.png'
 
   it 'should change when the model changes', ->
@@ -83,7 +85,7 @@ describe 'AnimalsView', ->
 
     it 'should grow when an item is added to the collection', ->
       expect($('#container .animals li').size()).toBe 3
-      @animals.add(new Animal({kind: 'Platypus', name: 'Plato', image: ''}))
+      @animals.add(new Animal({kind: 'Platypus', name: 'Plato', age: 100, image: ''}))
       expect($('#container .animals li').size()).toBe 4
 
     it 'should shrink when an item is removed from the collection', ->
@@ -97,7 +99,17 @@ describe 'AnimalsView', ->
 
 
 describe 'Events', ->
-  it 'should increase age
+  beforeEach ->
+    @animal = new Animal(tapir)
+    @animalView = new AnimalView({model: @animal})
+    $('#container').append(@animalView.render().el)
+
+  it 'clicking age should increase the age by one', ->
+    expect($('#container .animal h3').text()).toBe '5'
+    $('#container .animal h3').click()
+    expect($('#container .animal h3').text()).toBe '6'
+  $('#container').empty()
+
 
 describe 'Router', ->
 

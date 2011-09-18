@@ -16,17 +16,27 @@
       function Animal() {
         Animal.__super__.constructor.apply(this, arguments);
       }
+      Animal.prototype.incrAge = function() {
+        console.log('age', this.get('age'));
+        return this.set({
+          'age': this.get('age') + 1
+        });
+      };
       return Animal;
     })();
     window.AnimalView = (function() {
       __extends(AnimalView, Backbone.View);
       function AnimalView() {
+        this.incrAge = __bind(this.incrAge, this);
         this.render = __bind(this.render, this);
         AnimalView.__super__.constructor.apply(this, arguments);
       }
       AnimalView.prototype.template = _.template($('#animal-template').html());
       AnimalView.prototype.tagName = 'li';
       AnimalView.prototype.className = 'animal';
+      AnimalView.prototype.events = {
+        'click h3': 'incrAge'
+      };
       AnimalView.prototype.initialize = function() {
         this.model.bind('change', this.render);
         return this.model.bind('remove', this.remove, this);
@@ -34,6 +44,9 @@
       AnimalView.prototype.render = function() {
         $(this.el).html(this.template(this.model.toJSON()));
         return this;
+      };
+      AnimalView.prototype.incrAge = function() {
+        return this.model.incrAge();
       };
       return AnimalView;
     })();

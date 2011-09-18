@@ -3,11 +3,17 @@ do $ ->
     'sane'
 
   class window.Animal extends Backbone.Model
+    incrAge: ->
+      console.log 'age',  @get('age')
+      @set({'age': @get('age') + 1})
 
   class window.AnimalView extends Backbone.View
     template: _.template($('#animal-template').html())
     tagName: 'li'
     className: 'animal'
+
+    events: 
+      'click h3': 'incrAge'
 
     initialize: ->
       @model.bind('change', @render)
@@ -16,6 +22,9 @@ do $ ->
     render: =>
       $(@el).html @template(@model.toJSON())
       this
+
+    incrAge: =>
+      @model.incrAge()
     
   class window.Animals extends Backbone.Collection
     model: Animal

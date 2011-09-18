@@ -11,6 +11,7 @@
     return it('should hold kind, name, and image', function() {
       expect(this.animal.get('kind')).toBe('Tapir');
       expect(this.animal.get('name')).toBe('Dan Ariely');
+      expect(this.animal.get('age')).toBe(5);
       return expect(this.animal.get('image')).toBe('/images/tapir.png');
     });
   });
@@ -32,6 +33,7 @@
       expect($('#container .animal').size()).toBe(1);
       expect($('#container .animal h1').text()).toBe('Tapir');
       expect($('#container .animal h2').text()).toBe('Dan Ariely');
+      expect($('#container .animal h3').text()).toBe('5');
       return expect($('#container .animal img').attr('src')).toBe('/images/tapir.png');
     });
     it('should change when the model changes', function() {
@@ -73,7 +75,7 @@
     it('should have a classname as animals', function() {
       return expect(this.animalsView.className).toBe('animals');
     });
-    describe('animals-template', function() {
+    return describe('animals-template', function() {
       beforeEach(function() {
         return $('#container').append(this.animalsView.render().el);
       });
@@ -93,6 +95,7 @@
         this.animals.add(new Animal({
           kind: 'Platypus',
           name: 'Plato',
+          age: 100,
           image: ''
         }));
         return expect($('#container .animals li').size()).toBe(4);
@@ -108,7 +111,25 @@
         return $('#container').empty();
       });
     });
-    describe('Server /animals Animals#fetch', function() {
+  });
+  describe('Events', function() {
+    beforeEach(function() {
+      this.animal = new Animal(tapir);
+      this.animalView = new AnimalView({
+        model: this.animal
+      });
+      return $('#container').append(this.animalView.render().el);
+    });
+    it('clicking age should increase the age by one', function() {
+      expect($('#container .animal h3').text()).toBe('5');
+      $('#container .animal h3').click();
+      return expect($('#container .animal h3').text()).toBe('6');
+    });
+    return $('#container').empty();
+  });
+  describe('Router', function() {});
+  describe('Server', function() {
+    describe('/animals Animals#fetch', function() {
       beforeEach(function() {
         var found, isFound;
         this.animals = new Animals();
@@ -132,7 +153,7 @@
         return expect(this.animals.size()).toBe(3);
       });
     });
-    return describe('Server POST /animals Animals#create', function() {
+    return describe('POST /animals Animals#create', function() {
       beforeEach(function() {
         var found, result, success;
         this.animals = new Animals();
