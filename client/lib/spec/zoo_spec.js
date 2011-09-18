@@ -130,28 +130,31 @@
   describe('Router', function() {
     beforeEach(function() {
       this.router = new ZooRouter();
-      return Backbone.history.start();
+      if (window.routerStarted == null) {
+        Backbone.history.start();
+        return window.routerStarted = true;
+      }
     });
     it('should route "" to zoo function', function() {
       var zooCalled;
       zooCalled = false;
-      this.router.zoo = function() {
+      this.router.bind('route:zoo', function() {
         return zooCalled = true;
-      };
+      });
       this.router.navigate('', true);
       return expect(zooCalled).toBe(true);
     });
     return it('should route #cage to cage function with id 1', function() {
       var cageCalled, cageNum;
       cageCalled = false;
-      cageNum = -1;
-      this.router.cage = function(num) {
-        cageNum = num;
-        return cageCalled = true;
-      };
+      cageNum = null;
+      this.router.bind('route:cage', function(num) {
+        cageCalled = true;
+        return cageNum = num;
+      });
       this.router.navigate('cage/1', true);
       expect(cageCalled).toBe(true);
-      return expect(cageNum).toBe(1);
+      return expect(cageNum).toBe('1');
     });
   });
   describe('Server', function() {

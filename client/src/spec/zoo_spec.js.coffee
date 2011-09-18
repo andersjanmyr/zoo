@@ -115,13 +115,15 @@ describe 'Router', ->
 
   beforeEach ->
     @router = new ZooRouter()
-    Backbone.history.start()
+    unless window.routerStarted?
+      Backbone.history.start()
+      window.routerStarted = true
 
   it 'should route "" to zoo function', ->
 
     # Spy on the zoo function
     zooCalled = false
-    @router.zoo = -> 
+    @router.bind 'route:zoo', -> 
       zooCalled = true
 
     @router.navigate('', true);
@@ -130,14 +132,14 @@ describe 'Router', ->
   it 'should route #cage to cage function with id 1', ->
     # Spy on the cage function
     cageCalled = false
-    cageNum = -1
-    @router.cage = (num)-> 
-      cageNum = num
+    cageNum = null
+    @router.bind 'route:cage', (num)-> 
       cageCalled = true
+      cageNum = num
 
     @router.navigate('cage/1', true);
     expect(cageCalled).toBe true
-    expect(cageNum).toBe 1
+    expect(cageNum).toBe '1'
 
     
   
