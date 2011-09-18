@@ -96,7 +96,8 @@ describe 'AnimalsView', ->
       $('#container').empty()
 
 
-  describe 'Server /animals Animals#fetch', ->
+describe 'Server', ->
+  describe '/animals Animals#fetch', ->
 
     beforeEach ->
       @animals = new Animals()
@@ -115,7 +116,7 @@ describe 'AnimalsView', ->
       console.log 'animals', @animals
       expect(@animals.size()).toBe 3
 
-  describe 'Server POST /animals Animals#create', ->
+  describe 'POST /animals Animals#create', ->
     beforeEach ->
       @animals = new Animals()
       found = false
