@@ -96,6 +96,12 @@ describe 'AnimalsView', ->
       $('#container').empty()
 
 
+describe 'Events', ->
+  it 'should increase age
+
+describe 'Router', ->
+
+
 describe 'Server', ->
   describe '/animals Animals#fetch', ->
 
