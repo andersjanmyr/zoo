@@ -27,9 +27,9 @@ or Jersey (Java)
 Do what you have to!
 
 
-
 ### Unpack the files.
 
+<pre>
     |-- client                                  # The client 
     |   |-- index.html                          # The application page.
     |   |-- lib                                 # The Javascript source
@@ -56,6 +56,7 @@ Do what you have to!
         |   `-- server.rb                       # Sinatra Ruby
         `-- src
             `-- server.js.coffee                # Node Coffeescript
+</pre>
 
 ### Open SpecRunner.html
 
@@ -67,6 +68,14 @@ fine to open it as a file.
 Verify that the sanity spec is showing green, and that all other specs fails.
 Open up the files `zoo_spec.js.coffee` and `zoo.js` or
 `zoo.js.coffee`.
+
+### Optionally
+
+
+* Start coffeescript compilation by running `guard`, if you installed it.
+* Start coffescript compilation by running `coffee -cwo lib src`, if you
+  installed coffeescript.
+
 
 
 ## 1. Fix the Animal
