@@ -25,7 +25,7 @@
     it('should have a tag of li', function() {
       return expect(this.animalView.tagName).toBe('li');
     });
-    it('should have a classname as animal', function() {
+    it('should have a classname animal', function() {
       return expect(this.animalView.className).toBe('animal');
     });
     it('should render the animal-template', function() {
@@ -125,7 +125,9 @@
       $('#container .animal h3').click();
       return expect($('#container .animal h3').text()).toBe('6');
     });
-    return $('#container').empty();
+    return afterEach(function() {
+      return $('#container').empty();
+    });
   });
   describe('Router', function() {
     beforeEach(function() {
@@ -182,7 +184,8 @@
       });
       return it('should populate the animals from the server', function() {
         console.log('animals', this.animals);
-        return expect(this.animals.size()).toBe(3);
+        expect(this.animals.size()).toBe(3);
+        return this.animals.at(0).destroy();
       });
     });
     return describe('POST /animals Animals#create', function() {
@@ -208,13 +211,9 @@
         };
         return waitsFor(success, 'Timeout error', 1000);
       });
-      it('should save the animal to the server', function() {
-        return expect(this.animals.size()).toBe(4);
-      });
-      return afterEach(function() {
-        console.log('destroy', this.animals);
-        this.animals.at(0).destroy();
-        return console.log('destroy', this.animals);
+      return it('should save the animal to the server', function() {
+        expect(this.animals.size()).toBe(4);
+        return this.animals.at(0).destroy();
       });
     });
   });

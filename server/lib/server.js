@@ -30,13 +30,19 @@
     }
   ];
   server.get('/animals', function(request, response) {
-    console.log('/animals', animals);
     return response.send(animals);
   });
   server.post('/animals', function(request, response) {
     var animal;
     animal = request.body;
-    console.log('/animals', animal);
+    console.log('POST /animals', request);
+    animals.push(animal);
+    return response.send(animal);
+  });
+  server["delete"]('/animals', function(request, response) {
+    var animal;
+    animal = request.body;
+    console.log('DELETE /animals', request);
     animals.push(animal);
     return response.send(animal);
   });

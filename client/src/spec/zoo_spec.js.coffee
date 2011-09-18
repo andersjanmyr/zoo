@@ -21,7 +21,7 @@ describe 'AnimalView', ->
   it 'should have a tag of li', ->
     expect(@animalView.tagName).toBe 'li'
 
-  it 'should have a classname as animal', ->
+  it 'should have a classname animal', ->
     expect(@animalView.className).toBe 'animal'
 
   it 'should render the animal-template', ->
@@ -108,7 +108,9 @@ describe 'Events', ->
     expect($('#container .animal h3').text()).toBe '5'
     $('#container .animal h3').click()
     expect($('#container .animal h3').text()).toBe '6'
-  $('#container').empty()
+
+  afterEach ->
+    $('#container').empty()
 
 
 describe 'Router', ->
@@ -165,6 +167,7 @@ describe 'Server', ->
     it 'should populate the animals from the server', ->
       console.log 'animals', @animals
       expect(@animals.size()).toBe 3
+      @animals.at(0).destroy()
 
   describe 'POST /animals Animals#create', ->
     beforeEach ->
@@ -185,8 +188,5 @@ describe 'Server', ->
 
     it 'should save the animal to the server', ->
       expect(@animals.size()).toBe 4
-
-    afterEach ->
-      console.log 'destroy', @animals
       @animals.at(0).destroy()
-      console.log 'destroy', @animals
+

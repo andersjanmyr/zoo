@@ -28,11 +28,17 @@ animals = [
 ]
 
 server.get '/animals', (request, response) ->
-  console.log '/animals', animals
   response.send animals
 
 server.post '/animals', (request, response) ->
   animal = request.body
-  console.log '/animals', animal
+  console.log 'POST /animals', request
   animals.push animal
   response.send animal
+
+server.delete '/animals', (request, response) ->
+  animal = request.body
+  console.log 'DELETE /animals', request
+  animals.push animal
+  response.send animal
+
