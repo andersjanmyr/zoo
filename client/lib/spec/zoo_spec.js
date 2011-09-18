@@ -127,8 +127,37 @@
     });
     return $('#container').empty();
   });
-  describe('Router', function() {});
+  describe('Router', function() {
+    beforeEach(function() {
+      this.router = new ZooRouter();
+      return Backbone.history.start();
+    });
+    it('should route "" to zoo function', function() {
+      var zooCalled;
+      zooCalled = false;
+      this.router.zoo = function() {
+        return zooCalled = true;
+      };
+      this.router.navigate('', true);
+      return expect(zooCalled).toBe(true);
+    });
+    return it('should route #cage to cage function with id 1', function() {
+      var cageCalled, cageNum;
+      cageCalled = false;
+      cageNum = -1;
+      this.router.cage = function(num) {
+        cageNum = num;
+        return cageCalled = true;
+      };
+      this.router.navigate('cage/1', true);
+      expect(cageCalled).toBe(true);
+      return expect(cageNum).toBe(1);
+    });
+  });
   describe('Server', function() {
+    beforeEach(function() {
+      return Backbone.emulateHTTP = false;
+    });
     describe('/animals Animals#fetch', function() {
       beforeEach(function() {
         var found, isFound;

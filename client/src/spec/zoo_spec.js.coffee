@@ -113,8 +113,38 @@ describe 'Events', ->
 
 describe 'Router', ->
 
+  beforeEach ->
+    @router = new ZooRouter()
+    Backbone.history.start()
 
+  it 'should route "" to zoo function', ->
+
+    # Spy on the zoo function
+    zooCalled = false
+    @router.zoo = -> 
+      zooCalled = true
+
+    @router.navigate('', true);
+    expect(zooCalled).toBe true
+
+  it 'should route #cage to cage function with id 1', ->
+    # Spy on the cage function
+    cageCalled = false
+    cageNum = -1
+    @router.cage = (num)-> 
+      cageNum = num
+      cageCalled = true
+
+    @router.navigate('cage/1', true);
+    expect(cageCalled).toBe true
+    expect(cageNum).toBe 1
+
+    
+  
 describe 'Server', ->
+  beforeEach ->
+    Backbone.emulateHTTP = false
+
   describe '/animals Animals#fetch', ->
 
     beforeEach ->

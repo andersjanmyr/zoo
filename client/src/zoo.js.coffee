@@ -4,7 +4,6 @@ do $ ->
 
   class window.Animal extends Backbone.Model
     incrAge: ->
-      console.log 'age',  @get('age')
       @set({'age': @get('age') + 1})
 
   class window.AnimalView extends Backbone.View
@@ -49,5 +48,15 @@ do $ ->
       $animals = @$(@el)
       $animals.append(view.render().el)
       
-console.log 'test'
+
+  class window.ZooRouter extends Backbone.Router
+    routes:
+      '': 'zoo'
+      'cage/:num': 'cage'
+
+    zoo: ->
+      console.log 'zoo'
+
+    cage: (num) ->
+      console.log 'cage', num
 

@@ -17,7 +17,6 @@
         Animal.__super__.constructor.apply(this, arguments);
       }
       Animal.prototype.incrAge = function() {
-        console.log('age', this.get('age'));
         return this.set({
           'age': this.get('age') + 1
         });
@@ -59,7 +58,7 @@
       Animals.prototype.url = '/animals';
       return Animals;
     })();
-    return window.AnimalsView = (function() {
+    window.AnimalsView = (function() {
       __extends(AnimalsView, Backbone.View);
       function AnimalsView() {
         this.renderOne = __bind(this.renderOne, this);
@@ -89,6 +88,22 @@
       };
       return AnimalsView;
     })();
+    return window.ZooRouter = (function() {
+      __extends(ZooRouter, Backbone.Router);
+      function ZooRouter() {
+        ZooRouter.__super__.constructor.apply(this, arguments);
+      }
+      ZooRouter.prototype.routes = {
+        '': 'zoo',
+        'cage/:num': 'cage'
+      };
+      ZooRouter.prototype.zoo = function() {
+        return console.log('zoo');
+      };
+      ZooRouter.prototype.cage = function(num) {
+        return console.log('cage', num);
+      };
+      return ZooRouter;
+    })();
   })();
-  console.log('test');
 }).call(this);
