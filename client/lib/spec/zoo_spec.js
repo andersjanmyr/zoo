@@ -9,6 +9,7 @@
       return this.animal = new Animal(tapir);
     });
     return it('should hold kind, name, and image', function() {
+      expect(this.animal.id).toBe(1);
       expect(this.animal.get('kind')).toBe('Tapir');
       expect(this.animal.get('name')).toBe('Dan Ariely');
       expect(this.animal.get('age')).toBe(5);
@@ -55,6 +56,9 @@
     it('should hold Animal models', function() {
       return expect(this.animals.model).toBe(Animal);
     });
+    it('should have a url of /animals', function() {
+      return expect(this.animals.url).toBe('/animals');
+    });
     it('should contain three animals', function() {
       return expect(this.animals.size()).toBe(3);
     });
@@ -75,7 +79,7 @@
     it('should have a classname as animals', function() {
       return expect(this.animalsView.className).toBe('animals');
     });
-    return describe('animals-template', function() {
+    return describe('render', function() {
       beforeEach(function() {
         return $('#container').append(this.animalsView.render().el);
       });

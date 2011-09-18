@@ -68,7 +68,7 @@ Open up the files `zoo_spec.js.coffee` and `zoo.js` or
 `zoo.js.coffee`.
 
 
-## 1. Fix, the first test, *Book should hold title, ...*
+## 1. Fix the Animal
 
 The first tests consists of creating a Backbone.Model. Enter the code
 into the source file, Javascript or Coffeescript as you like. Look at
@@ -76,6 +76,51 @@ the spec file to see what needs to be done. Coffeescript is easier to
 read.
 
 
-## 2. 
+## 2. Fix the AnimalView
+
+In order to do this you need to create an AnimalView that takes an
+Animal as a model parameter. You need to set the properties and you need
+to update the template in the SpecRunner.html to hold the values you
+need. You also need to setup the proper events to trigger on change.
+
+## 3. Fix the Animals
+
+Animals should be a collection holding animals :)
+
+## 4. Fix the AnimalsView
+
+The AnimalsView need to have the proper attributes set.
+
+## 5. Fix the AnimalsView.render method
+
+The AnimalsView should render all its sub-views when called. After
+that you need to setup the event handling to make sure the view is
+updated when the collection changes. You may need to make changes to
+both the AnimalsView and the AnimalView.
+
+## 6. Events, Handle click events on AnimalView
+
+The Events spec contains a spec that will succeed when an animal's age
+is incremented when it is clicked. Be sure to put the proper
+functionality in the view and in the model.
+
+## 7. Router, Create a router that will respond to the proper routes.
+
+This spec is heavily dependent on mocks, even though the mocks are there
+you are supposed to create the methods that will be called when the
+proper route is selected.
+
+## 8. Server, Setup communication with the server.
+
+The Server specs will test the communication with the server.
+It is dependent on some kind of restful service that responds to the
+/animals path.
+
+
+
+FEEL FREE TO IMPROVE THE DOCUMENTATION AS YOU COMPLETE THE SPECS!
+
+
+
 
 

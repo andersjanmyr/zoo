@@ -7,6 +7,7 @@ describe 'Animal', ->
     @animal = new Animal(tapir)
 
   it 'should hold kind, name, and image', ->
+    expect(@animal.id).toBe 1
     expect(@animal.get('kind')).toBe 'Tapir'
     expect(@animal.get('name')).toBe 'Dan Ariely'
     expect(@animal.get('age')).toBe 5
@@ -50,6 +51,9 @@ describe 'Animals', ->
   it 'should hold Animal models', ->
     expect(@animals.model).toBe Animal
 
+  it 'should have a url of /animals', ->
+    expect(@animals.url).toBe '/animals'
+
   it 'should contain three animals', ->
     expect(@animals.size()).toBe 3
 
@@ -67,7 +71,7 @@ describe 'AnimalsView', ->
   it 'should have a classname as animals', ->
     expect(@animalsView.className).toBe 'animals'
 
-  describe 'animals-template', ->
+  describe 'render', ->
 
     beforeEach -> 
       $('#container').append(@animalsView.render().el)
