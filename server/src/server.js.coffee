@@ -27,18 +27,3 @@ animals = [
   { kind: 'Sloth',  name: 'Robert Pirsig', image: '' }
 ]
 
-server.get '/animals', (request, response) ->
-  response.send animals
-
-server.post '/animals', (request, response) ->
-  animal = request.body
-  console.log 'POST /animals', request
-  animals.push animal
-  response.send animal
-
-server.delete '/animals', (request, response) ->
-  animal = request.body
-  console.log 'DELETE /animals', request
-  animals.push animal
-  response.send animal
-

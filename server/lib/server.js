@@ -29,21 +29,4 @@
       image: ''
     }
   ];
-  server.get('/animals', function(request, response) {
-    return response.send(animals);
-  });
-  server.post('/animals', function(request, response) {
-    var animal;
-    animal = request.body;
-    console.log('POST /animals', request);
-    animals.push(animal);
-    return response.send(animal);
-  });
-  server["delete"]('/animals', function(request, response) {
-    var animal;
-    animal = request.body;
-    console.log('DELETE /animals', request);
-    animals.push(animal);
-    return response.send(animal);
-  });
 }).call(this);
