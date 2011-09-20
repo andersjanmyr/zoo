@@ -59,10 +59,24 @@ Do what you have to!
             `-- server.js.coffee                # Node Coffeescript
 </pre>
 
+### cd into $zoo_home/client
+
+You will do most of the work with the files in the client directory.
+
 ### Open SpecRunner.html
 
-If you want to use LiveReload, open it from a server, otherwise it is
-fine to open it as a file.
+If you want to use [LiveReload](http://livereload.com/), open it from a server,
+otherwise it is fine to open it as a file.
+
+To open it from a server, you can start node.
+
+    $ node $zoo_home/server/lib/server.js
+    ....zoo/server/lib/../../client
+    Starting on port 4000
+
+And then you can access the specs at http://localhost:4000/SpecRunner.html
+
+
 
 ### Verify setup
 
@@ -72,17 +86,22 @@ Open up the files `zoo_spec.js.coffee` and `zoo.js` or
 
 ### Optionally
 
+Start coffeescript compilation by running `guard`, if you installed it.
 
-* Start coffeescript compilation by running `guard`, if you installed it.
-* Start coffescript compilation by running `coffee -cwo lib src`, if you
-  installed coffeescript.
+    $ gem install guard guard-coffeescript
+    $ guard
 
+Start coffescript compilation by running `coffee -cwo lib src`, if you
+installed coffeescript.
+
+    $ coffee -cwo lib src
 
 
 ## 1. Fix the Animal
 
 The first tests consists of creating a Backbone.Model. Enter the code
-into the source file, Javascript or Coffeescript as you like. Look at
+into the source file, Javascript ($zoo_home/client/lib/zoo.js)
+or Coffeescript ($zoo_home/client/src/zoo.js.coffee) as you like. Look at
 the spec file to see what needs to be done. Coffeescript is easier to
 read.
 
