@@ -12,6 +12,20 @@ or Jersey (Java)
     $ npm install -g coffee-script          # Install Coffeescript
     $ npm install -g express                # Install Express (server)
 
+Update: The npm install may not work. In that case you may have to build
+it yourself. Instruction are here: http://search.npmjs.org/#/_install
+
+If `npm install -g coffee-script` does not work you can either use
+`sudo` or install into the local directory without the `-g`.
+
+    $ cd $zoo_home
+    $ npm install coffee-script   # Install Coffeescript locally
+    $ npm install express         # Install Express locally (server) 
+
+
+
+
+
 ### Sinatra
 
     $ Install XCode (OSX)
