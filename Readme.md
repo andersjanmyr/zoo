@@ -7,13 +7,14 @@ or Jersey (Java)
 
 ### Node
 
-    $ brew/aptitude install node.js
-    $ curl http://npmjs.org/install.sh | sh
-    $ npm install -g coffee-script
-    $ npm install -g express
+    # Install Node - https://github.com/joyent/node/wiki/Installing-Node.js-via-package-manager
+    $ curl http://npmjs.org/install.sh | sh # Install NPM 
+    $ npm install -g coffee-script          # Install Coffeescript
+    $ npm install -g express                # Install Express (server)
 
 ### Sinatra
 
+    $ Install XCode (OSX)
     $ bash < <(curl -s https://rvm.beginrescueend.com/install/rvm) 
     $ DO WHAT THE INSTALLER TELLS YOU TO DO (update .profile)
     $ rvm install 1.9.2
