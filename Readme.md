@@ -23,6 +23,15 @@ If `npm install -g coffee-script` does not work you can either use
     $ npm install express         # Install Express locally (server) 
 
 
+Update 2: The node installation in Ubuntu may be old, then you have to
+install from source.
+
+    $ git clone https://github.com/joyent/node.git
+    $ cd node
+    $ git co v0.4.9
+    $ ./configure
+    $ sudo make install
+
 
 
 
