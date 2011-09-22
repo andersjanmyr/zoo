@@ -1,3 +1,4 @@
-do (window.sanity = ->
-  'sane')
+do $ ->
+  window.sanity = ->
+    'sane'
 
