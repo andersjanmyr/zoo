@@ -171,11 +171,10 @@ describe 'Server', ->
     it 'should populate the animals from the server', ->
       console.log 'animals', @animals
       expect(@animals.size()).toBe 3
-      @animals.at(0).destroy()
 
   describe 'POST /animals Animals#create', ->
     beforeEach ->
-      @animals = new Animals()
+      @animals = new Animals(animals)
       found = false
       result = @animals.create({
         kind: 'Elefant'
@@ -192,5 +191,8 @@ describe 'Server', ->
 
     it 'should save the animal to the server', ->
       expect(@animals.size()).toBe 4
+    
+    afterEach -> 
+      console.log(@animals.toJSON())
       @animals.at(0).destroy()
-
+      

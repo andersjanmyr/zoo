@@ -16,14 +16,17 @@
   server.listen(port);
   animals = [
     {
+      id: 1,
       kind: 'Tapir',
       name: 'Dan Ariely',
       image: '/images/tapir.png'
     }, {
+      id: 2,
       kind: 'Aardvark',
       name: 'Douglas Hofstadter',
       image: ''
     }, {
+      id: 3,
       kind: 'Sloth',
       name: 'Robert Pirsig',
       image: ''
@@ -35,15 +38,15 @@
   server.post('/animals', function(request, response) {
     var animal;
     animal = request.body;
-    console.log('POST /animals', request);
+    console.log('POST /animals');
     animals.push(animal);
     return response.send(animal);
   });
-  server["delete"]('/animals', function(request, response) {
+  server["delete"]('/animals/:id', function(request, response) {
     var animal;
     animal = request.body;
-    console.log('DELETE /animals', request);
-    animals.push(animal);
+    console.log("DELETE /animals/" + request.params['id']);
+    animals.shift();
     return response.send(animal);
   });
 }).call(this);

@@ -188,14 +188,13 @@
       });
       return it('should populate the animals from the server', function() {
         console.log('animals', this.animals);
-        expect(this.animals.size()).toBe(3);
-        return this.animals.at(0).destroy();
+        return expect(this.animals.size()).toBe(3);
       });
     });
     return describe('POST /animals Animals#create', function() {
       beforeEach(function() {
         var found, result, success;
-        this.animals = new Animals();
+        this.animals = new Animals(animals);
         found = false;
         result = this.animals.create({
           kind: 'Elefant',
@@ -215,8 +214,11 @@
         };
         return waitsFor(success, 'Timeout error', 1000);
       });
-      return it('should save the animal to the server', function() {
-        expect(this.animals.size()).toBe(4);
+      it('should save the animal to the server', function() {
+        return expect(this.animals.size()).toBe(4);
+      });
+      return afterEach(function() {
+        console.log(this.animals.toJSON());
         return this.animals.at(0).destroy();
       });
     });
